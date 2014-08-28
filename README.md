@@ -1,9 +1,9 @@
-message
+messages
 =======
 
-message - A lightweight jQuery plugin for showing messages around fields and other HTML elements.
+messages - A lightweight jQuery plugin for showing messages around fields and other HTML elements.
 
-Use the message plugin for showing beautiful messages around form fields or other HTML elements. You can show and hide multiple messages on a single field.
+Use the messages plugin for showing beautiful messages around form fields or other HTML elements. You can show and hide multiple messages on a single field.
 
 Check out the plugin overview here: http://kolgepratik.github.io/messages/
 
