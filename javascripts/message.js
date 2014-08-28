@@ -5,7 +5,7 @@
 				constants: {					
 				},
 				defaults: {
-					messageStyle: '_msg_block'
+					messageStyle: 'ms-msg-block'
 				}								
 			}
 		};
@@ -83,7 +83,7 @@
 					var $messageSpan = $('<span></span>');
 			
 					$messageSpan.append(options.text);			
-					$messageSpan.addClass('_msg _msg_' + options.type + ' _msg_' + options.id + ' ' + settings.message.defaults.messageStyle);
+					$messageSpan.addClass('ms-msg ms-msg-' + options.type + ' ms-msg-' + options.id + ' ' + settings.message.defaults.messageStyle);
 					
 					return $messageSpan;
 				},
@@ -108,11 +108,11 @@
 					var message = null;
 					
 					if(options.id) {
-						message = helpers.message.getMessageParent(element, options).find('span._msg_' + options.id);						
+						message = helpers.message.getMessageParent(element, options).find('span.ms-msg-' + options.id);						
 					} else if (options.type) {
-						message = helpers.message.getMessageParent(element, options).find('span._msg_' + options.type);						
+						message = helpers.message.getMessageParent(element, options).find('span.ms-msg-' + options.type);						
 					} else {
-						message = helpers.message.getMessageParent(element, options).find('span._msg');						
+						message = helpers.message.getMessageParent(element, options).find('span.ms-msg');						
 					}
 					
 					return message;
