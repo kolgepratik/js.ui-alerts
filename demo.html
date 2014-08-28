@@ -89,6 +89,7 @@
         	select {
         		width: 100px;
         		padding: 3px;
+        		margin-right: 10px;
         	}
         	
         	button {
@@ -117,7 +118,6 @@
             <div>
             	<h4><u>Select operations to perform on the above fields:</u></h4>
             	
-            	<b>Field:</b>
             	<select id="fieldName">
             		<option value="all">All fields</option>
             		<option value="f_firstName">First Name</option>	
@@ -127,7 +127,6 @@
             		<option value="f_password">Password</option>
             	</select>
             	
-            	<b>Message Type:</b>
             	<select id="msgType">
             		<option value="none">All Types</option>
             		<option value="info">Info</option>	
@@ -136,13 +135,11 @@
             		<option value="error">Error</option>
             	</select>
             	
-            	<b>Select/Type new Identifier:</b>
             	<select id="msgIDs">
             		<option value=""></option>
             	</select>
             	<input id="msgID">
             	
-            	<b>Operation:</b>
             	<select id="opType">
             		<option value="add">Add</option>	
             		<option value="update">Update</option>
