@@ -71,14 +71,17 @@
         <style>
         	#mainDIV {
         		position: fixed;
+        		top: 5%;
         		top: 10%;
         		left: 5%;
+        		height: 90%;
         		height: 80%;
         		width: 90%;
         		overflow: auto;      		
         		text-align: left;
         		padding: 5px;
         		border: 1px solid gray;
+        		background-color: #FFFFF5;
         	}
         	
         	#messagesDIV {
@@ -99,6 +102,7 @@
         	select {
         		width: 100px;
         		padding: 3px;
+        		margin-right: 10px;
         	}
         	
         	button {
@@ -114,7 +118,12 @@
     
     <body>
         <div id="mainDIV">
-            <h3><u>message.js</u></h3>
+            <h3><u>messages.js</u></h3>
+            
+            <p>
+	            messages - A lightweight jQuery plugin for showing messages around fields and other HTML elements.<br/>
+				Use the messages plugin for showing beautiful messages around form fields or other HTML elements. You can show and hide multiple messages on a single field.
+            </p>
             
             <div id="messagesDIV">
                 <div><label>First name</label><input id="f_firstName" /></div>
@@ -127,8 +136,7 @@
             <div>
             	<h4><u>Select operations to perform on the above fields:</u></h4>
             	
-            	<b>Field:</b>
-            	<select id="fieldName">
+            	<select id="fieldName" title="Select field">
             		<option value="all">All fields</option>
             		<option value="f_firstName">First Name</option>	
             		<option value="f_lastName">Last Name</option>
@@ -137,8 +145,7 @@
             		<option value="f_password">Password</option>
             	</select>
             	
-            	<b>Message Type:</b>
-            	<select id="msgType">
+            	<select id="msgType" title="Select Type of Message">
             		<option value="none">All Types</option>
             		<option value="info">Info</option>	
             		<option value="warning">Warning</option>
@@ -146,14 +153,12 @@
             		<option value="error">Error</option>
             	</select>
             	
-            	<b>Select / Type new Identifier (optional):</b>
-            	<select id="msgIDs">
+            	<select id="msgIDs" title="Select an already added Identifier">
             		<option value=""></option>
             	</select>
-            	<input id="msgID">
+            	<input id="msgID" placeholder="Type an Identifier" title="Type an Identifier">
             	
-            	<b>Operation:</b>
-            	<select id="opType">
+            	<select id="opType" title="Select the operation to perform">
             		<option value="add">Add</option>	
             		<option value="update">Update</option>
             		<option value="remove">Remove</option>
@@ -161,6 +166,17 @@
             	
             	<button type="button" onclick="doOperation()">OK</button>            	
             </div>
+            
+            <br/>
+            
+            <p>
+				Check out the plugin overview <a href="http://kolgepratik.github.io/messages/" target="_blank">here</a> <br/>
+				To read the documentation go <a href="https://github.com/kolgepratik/messages/wiki" target="_blank">here</a> <br/>
+				See the demo <a href="http://kolgepratik.github.io/messages/demo.html" target="_blank">here</a> <br/>
+				Your feedback is always welcome. :)
+			</p>
+			
+			<a href="mailto:kolge.pratik@gmail.com?subject=feedback">kolgepratik</a>
         </div>
     </body>
 </html>
