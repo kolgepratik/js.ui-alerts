@@ -35,6 +35,7 @@
 				msgText += (fieldName === 'all' ? ' For all fields.' : ' For ' + fieldName + '.');
 				msgText += (msgID === '' ? ' No identifier.' : ' Msg identifier: ' + msgID + '.');
 				msgText += (msgType === 'none' ? ' Normal Type.' : ' Type: ' + msgType + '.');
+				msgText += (opType === 'update' ? ' Updated.' : '');
 				
 				fieldName = (fieldName === 'all' ? undefined : fieldName);
 				msgID = (msgID === '' ? undefined : msgID);
@@ -46,19 +47,29 @@
 					}
 				}	
 				
-				if (!fieldName && opType === 'add') {
+				if (!fieldName && (opType === 'add' || opType === 'update')) {
 					for (var i=0; i<allAvailableFieldIDs.length; i++) {
+						//console.log('allAvailableFieldIDs: ' + allAvailableFieldIDs[i]);
+						//console.log('msgID: ' + msgID);
+						//console.log('msgType: ' + msgType);
+						//console.log('msgText: ' + msgText);
+						//console.log('opType: ' + opType);
 						$('#' + allAvailableFieldIDs[i]).message(opType, { id: msgID, type: msgType, text: msgText });
 					}
 				} else {
 					fieldName = (fieldName ? fieldName : 'messagesDIV');
+					//console.log('fieldName: ' + fieldName);
+					//console.log('msgID: ' + msgID);
+					//console.log('msgType: ' + msgType);
+					//console.log('msgText: ' + msgText);
+					//console.log('opType: ' + opType);
 					$('#' + fieldName).message(opType, { id: msgID, type: msgType, text: msgText });
 				}
 			}
         </script>
         
         <style>
-        	.mainDIV {
+        	#mainDIV {
         		position: fixed;
         		top: 10%;
         		left: 5%;
@@ -70,7 +81,7 @@
         		border: 1px solid gray;
         	}
         	
-        	.messagesDIV {
+        	#messagesDIV {
         		padding: 10px;
         	}
         	
@@ -102,10 +113,10 @@
     </head>
     
     <body>
-        <div class="mainDIV">
+        <div id="mainDIV">
             <h3><u>message.js</u></h3>
             
-            <div class="messagesDIV">
+            <div id="messagesDIV">
                 <div><label>First name</label><input id="f_firstName" /></div>
                 <div><label>Last name</label><input id="f_lastName" /></div>
                 <div><label>Email Add</label><input id="f_email" /></div>
@@ -144,6 +155,7 @@
             	<b>Operation:</b>
             	<select id="opType">
             		<option value="add">Add</option>	
+            		<option value="update">Update</option>
             		<option value="remove">Remove</option>
             	</select>
             	

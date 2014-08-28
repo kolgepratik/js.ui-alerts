@@ -68,7 +68,7 @@
 				return this.each(function() {
 					var $this = $(this);
 					
-					helpers.message.findMessage(element, options).html(options.text);
+					helpers.message.findMessage($this, options).html(options.text);
 				
 					if(options.flash) {
 						$this.effect('highlight', options.flash);
