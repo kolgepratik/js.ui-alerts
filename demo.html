@@ -3,127 +3,151 @@
 <html>
     <head>
         <script src="javascripts/jquery-2.0.3.js"></script>
-        <script src="javascripts/dialog.js"></script>        
+        <script src="javascripts/message.js"></script>        
                 
-        <link rel="stylesheet" href="stylesheets/dialog.css">
+        <link rel="stylesheet" href="stylesheets/message.css">
         
         <script>
-            var dialog1,
-                dialog2,
-                dialog3,
-                dialog4,
-                dialog5,
-                dialog6 = null;
-            
+        	var allAvailableFieldIDs = [];
+        
             $(document).ready(function() {
-                dialog1 = $('#dialog1').dialog().trigger('dialog-open');  
-                dialog2 = $('#dialog2').dialog().trigger('dialog-open');
-                dialog3 = $('#dialog3').dialog().trigger('dialog-open');
-                dialog4 = $('#dialog4').dialog().trigger('dialog-open');  
-                dialog5 = $('#dialog5').dialog().trigger('dialog-open');
-                dialog6 = $('#dialog6').dialog().trigger('dialog-open');
+            	$('#messagesDIV').message({ messageStyle: '_msg_block' });
+            	
+            	$('#msgIDs').on('change', function() {
+            		$('#msgID').val($(this).find('option:selected').val());
+            	});
+            	
+            	allAvailableFieldIDs.push('f_firstName');
+            	allAvailableFieldIDs.push('f_lastName');
+            	allAvailableFieldIDs.push('f_email');
+            	allAvailableFieldIDs.push('f_username');
+            	allAvailableFieldIDs.push('f_password');
             });
+            
+			function doOperation() {
+				msgText = 'Field Message.';
+				
+				fieldName = $('#fieldName option:selected').val();
+				msgType = $('#msgType option:selected').val();
+				msgID = $.trim($('#msgID').val());
+				opType = $('#opType option:selected').val();
+				
+				msgText += (fieldName === 'all' ? ' For all fields.' : ' For ' + fieldName + '.');
+				msgText += (msgID === '' ? ' No identifier.' : ' Msg identifier: ' + msgID + '.');
+				msgText += (msgType === 'none' ? ' Normal Type.' : ' Type: ' + msgType + '.');
+				
+				fieldName = (fieldName === 'all' ? undefined : fieldName);
+				msgID = (msgID === '' ? undefined : msgID);
+				msgType = (msgType === 'none' ? undefined : msgType);
+				
+				if (msgID) {
+					if (opType === 'add') {
+						$('#msgIDs').append($('<option></option>', { value: msgID, text: msgID })).val('');
+					}
+				}	
+				
+				if (!fieldName && opType === 'add') {
+					for (var i=0; i<allAvailableFieldIDs.length; i++) {
+						$('#' + allAvailableFieldIDs[i]).message(opType, { id: msgID, type: msgType, text: msgText });
+					}
+				} else {
+					fieldName = (fieldName ? fieldName : 'messagesDIV');
+					$('#' + fieldName).message(opType, { id: msgID, type: msgType, text: msgText });
+				}
+			}
         </script>
         
         <style>
-           .labelStyle {
-                margin-right: 5px;
-                display: block;
-                font-family: sans-serif;
-                font-size: small;
-                font-weight: bold;
-                color: #4D4948;
-                text-align: left;
-            }
-            
-            .inputStyle {
-                width: 300px;
-                padding: 5px;
-            }
-            
-            .bigInputStyle {
-                width: 500px;
-                padding: 5px;
-            }
+        	.mainDIV {
+        		position: fixed;
+        		top: 10%;
+        		left: 5%;
+        		height: 80%;
+        		width: 90%;
+        		overflow: auto;      		
+        		text-align: left;
+        		padding: 5px;
+        		border: 1px solid gray;
+        	}
+        	
+        	.messagesDIV {
+        		padding: 10px;
+        	}
+        	
+        	label {
+        		display: block;
+        		font-weight: bold;
+        		font-style: italic;
+        	}
+        	
+        	input {
+        		width: 200px;
+        		padding: 3px;
+        	}
+        	
+        	select {
+        		width: 100px;
+        		padding: 3px;
+        	}
+        	
+        	button {
+        		width: 100px;
+        		padding: 3px;
+        	}
+        	
+        	body {
+        		background-color: #F8F8F8;
+        	}
         </style>
     </head>
     
     <body>
-        <div style="spanFull">
-            <h3>Dialog plugin</h3>
+        <div class="mainDIV">
+            <h3><u>message.js</u></h3>
             
-            <br/>
+            <div class="messagesDIV">
+                <div><label>First name</label><input id="f_firstName" /></div>
+                <div><label>Last name</label><input id="f_lastName" /></div>
+                <div><label>Email Add</label><input id="f_email" /></div>
+                <div><label>Username</label><input id="f_username" /></div>
+                <div><label>Password</label><input type="password" id="f_password" /></div>
+            </div>
             
-            <div id="dialogsContainer">
-                <div id="dialog1">                    
-                    <div class="dialog-title">Simple Dialog</div>
-
-                    <div class="dialog-content labelStyle">                        
-                        <label class="labelStyle">Hello World.!!</label>
-                    </div>
-
-                    <div class="dialog-controls">
-                        <button type="button" class="customButton">Nice</button>
-                    </div>
-                </div>
-                
-                <div id="dialog2">                    
-                    <div class="dialog-title">Dialog with custom html content</div>
-
-                    <div class="dialog-content">                                                
-                        <div><img src="pic1.jpg" style="width: 400px; height: 250px;"></div>
-                        <label class="labelStyle"><b><u>The Dark Knight...</u></b></label>
-                    </div>
-
-                    <div class="dialog-controls">
-                        <button type="button" class="customButton">OK, close this</button>                        
-                    </div>
-                </div>
-                
-                <div id="dialog3">                    
-                    <form action="someAction" method="post">
-                        <div class="dialog-title">Dialog with form</div>
-
-                        <div class="dialog-content">                        
-                            <label class="labelStyle">Enter your name here: </label>
-                            <div><input type="text" name="nameField" class="inputStyle"></div>
-
-                            <br/>
-
-                            <label class="labelStyle">Desribe yourself in a few words</label>
-                            <div><textarea name="descriptionField" rows="5" class="bigInputStyle"></textarea></div>
-                        </div>
-
-                        <div class="dialog-controls">
-                            <button type="button" class="customButton">Upload</button>
-                            <button type="button" class="customButton">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-                
-                <div id="dialog4">                    
-                    <div class="dialog-content">                        
-                        <label class="labelStyle">This dialog has no title.!!</label>
-                    </div>
-
-                    <div class="dialog-controls">
-                        <button type="button" class="customButton">Got it</button>
-                    </div>
-                </div>
-                
-                <div id="dialog5">                    
-                    <div class="dialog-title">Dialog with no controls</div>
-
-                    <div class="dialog-content labelStyle">                        
-                        <label class="labelStyle">Hello World.!!</label>
-                    </div>
-                </div>
-                
-                <div id="dialog6">                    
-                    <div class="dialog-content labelStyle">                        
-                        <label class="labelStyle">This dialog has no title or controls.!!</label>
-                    </div>
-                </div>
+            <div>
+            	<h4><u>Select operations to perform on the above fields:</u></h4>
+            	
+            	<b>Field:</b>
+            	<select id="fieldName">
+            		<option value="all">All fields</option>
+            		<option value="f_firstName">First Name</option>	
+            		<option value="f_lastName">Last Name</option>
+            		<option value="f_email">Email</option>
+            		<option value="f_username">Username</option>
+            		<option value="f_password">Password</option>
+            	</select>
+            	
+            	<b>Message Type:</b>
+            	<select id="msgType">
+            		<option value="none">All fields</option>
+            		<option value="info">Info</option>	
+            		<option value="warning">Warning</option>
+            		<option value="success">Success</option>
+            		<option value="error">Error</option>
+            	</select>
+            	
+            	<b>Select / Type new Identifier (optional):</b>
+            	<select id="msgIDs">
+            		<option value=""></option>
+            	</select>
+            	<input id="msgID">
+            	
+            	<b>Operation:</b>
+            	<select id="opType">
+            		<option value="add">Add</option>	
+            		<option value="remove">Remove</option>
+            	</select>
+            	
+            	<button type="button" onclick="doOperation()">OK</button>            	
             </div>
         </div>
     </body>

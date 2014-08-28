@@ -1,0 +1,63 @@
+@CHARSET "ISO-8859-1";
+
+
+._msg_info, ._msg_success, ._msg_warning, ._msg_error, .validationMs {
+	padding-left: 0px;	/* Removed padding. */
+	padding-right: 0px;	/* Removed margin. */
+	font-family: sans-serif; 
+	font-size:13px;
+	font-weight: bold;
+	color: white;
+}
+
+._msg_block {
+	display: block;	
+}
+
+._msg_info {
+	color: #00529B;
+	/* background-color: #BDE5F8; */
+}
+
+._msg_success {
+	color: #4F8A10;
+	/* background-color: #DFF2BF; */
+}
+
+._msg_warning {
+	color: #9F6000;
+	/* background-color: #FEEFB3; */
+}
+
+._msg_error {
+	color: #D8000C;
+	/* background-color: #FFBABA; */
+}
+
+._msg_c_info {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #00529B;
+	/* background-color: #BDE5F8; */
+}
+
+._msg_c_success {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #4F8A10;
+	/* background-color: #DFF2BF; */
+}
+
+._msg_c_warning {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #9F6000;
+	/* background-color: #FEEFB3; */
+}
+
+._msg_c_error {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #D8000C;
+	/* background-color: #FFBABA; */
+}
