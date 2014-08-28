@@ -1,0 +1,63 @@
+@CHARSET "ISO-8859-1";
+
+
+.ms-msg-info, .ms-msg-success, .ms-msg-warning, .ms-msg-error, .validationMs {
+	padding-left: 0px;	/* Removed padding. */
+	padding-right: 0px;	/* Removed margin. */
+	font-family: sans-serif; 
+	font-size:13px;
+	font-weight: bold;
+	color: white;
+}
+
+.ms-msg-block {
+	display: block;	
+}
+
+.ms-msg-info {
+	color: #00529B;
+	/* background-color: #BDE5F8; */
+}
+
+.ms-msg-success {
+	color: #4F8A10;
+	/* background-color: #DFF2BF; */
+}
+
+.ms-msg-warning {
+	color: #9F6000;
+	/* background-color: #FEEFB3; */
+}
+
+.ms-msg-error {
+	color: #D8000C;
+	/* background-color: #FFBABA; */
+}
+
+.ms-msg-c_info {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #00529B;
+	/* background-color: #BDE5F8; */
+}
+
+.ms-msg-c_success {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #4F8A10;
+	/* background-color: #DFF2BF; */
+}
+
+.ms-msg-c_warning {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #9F6000;
+	/* background-color: #FEEFB3; */
+}
+
+.ms-msg-c_error {
+	padding-left: 0px;
+	padding-right: 0px;
+	color: #D8000C;
+	/* background-color: #FFBABA; */
+}

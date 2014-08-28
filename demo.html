@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script src="javascripts/jquery-2.0.3.js"></script>
+        <script src="javascripts/message.js"></script>        
+                
+        <link rel="stylesheet" href="stylesheets/message.css">
+        
+        <script>
+        	var allAvailableFieldIDs = [];
+        
+            $(document).ready(function() {
+            	$('#messagesDIV').message({ messageStyle: 'ms-msg-block' });
+            	
+            	$('#msgIDs').on('change', function() {
+            		$('#msgID').val($(this).find('option:selected').val());
+            	});
+            	
+            	allAvailableFieldIDs.push('f_firstName');
+            	allAvailableFieldIDs.push('f_lastName');
+            	allAvailableFieldIDs.push('f_email');
+            	allAvailableFieldIDs.push('f_username');
+            	allAvailableFieldIDs.push('f_password');
+            });
+            
+			function doOperation() {
+				msgText = 'Field Message.';
+				
+				fieldName = $('#fieldName option:selected').val();
+				msgType = $('#msgType option:selected').val();
+				msgID = $.trim($('#msgID').val());
+				opType = $('#opType option:selected').val();
+				
+				msgText += (fieldName === 'all' ? ' For all fields.' : ' For ' + fieldName + '.');
+				msgText += (msgID === '' ? ' No identifier.' : ' Msg identifier: ' + msgID + '.');
+				msgText += (msgType === 'none' ? ' Normal Type.' : ' Type: ' + msgType + '.');
+				msgText += (opType === 'update' ? ' Updated.' : '');
+				
+				fieldName = (fieldName === 'all' ? undefined : fieldName);
+				msgID = (msgID === '' ? undefined : msgID);
+				msgType = (msgType === 'none' ? undefined : msgType);
+				
+				if (msgID) {
+					if (opType === 'add') {
+						$('#msgIDs').append($('<option></option>', { value: msgID, text: msgID })).val('');
+					}
+				}	
+				
+				if (!fieldName && (opType === 'add' || opType === 'update')) {
+					for (var i=0; i<allAvailableFieldIDs.length; i++) {
+						$('#' + allAvailableFieldIDs[i]).message(opType, { id: msgID, type: msgType, text: msgText });
+					}
+				} else {
+					fieldName = (fieldName ? fieldName : 'messagesDIV');
+					$('#' + fieldName).message(opType, { id: msgID, type: msgType, text: msgText });
+				}
+			}
+        </script>
+        
+        <style>
+        	#mainDIV {
+        		position: fixed;
+        		top: 10%;
+        		left: 5%;
+        		height: 80%;
+        		width: 90%;
+        		overflow: auto;      		
+        		text-align: left;
+        		padding: 5px;
+        		border: 1px solid gray;
+        	}
+        	
+        	#messagesDIV {
+        		padding: 10px;
+        	}
+        	
+        	label {
+        		display: block;
+        		font-weight: bold;
+        		font-style: italic;
+        	}
+        	
+        	input {
+        		width: 200px;
+        		padding: 3px;
+        	}
+        	
+        	select {
+        		width: 100px;
+        		padding: 3px;
+        	}
+        	
+        	button {
+        		width: 100px;
+        		padding: 3px;
+        	}
+        	
+        	body {
+        		background-color: #F8F8F8;
+        	}
+        </style>
+    </head>
+    
+    <body>
+        <div id="mainDIV">
+            <h3><u>message.js</u></h3>
+            
+            <div id="messagesDIV">
+                <div><label>First name</label><input id="f_firstName" /></div>
+                <div><label>Last name</label><input id="f_lastName" /></div>
+                <div><label>Email Add</label><input id="f_email" /></div>
+                <div><label>Username</label><input id="f_username" /></div>
+                <div><label>Password</label><input type="password" id="f_password" /></div>
+            </div>
+            
+            <div>
+            	<h4><u>Select operations to perform on the above fields:</u></h4>
+            	
+            	<b>Field:</b>
+            	<select id="fieldName">
+            		<option value="all">All fields</option>
+            		<option value="f_firstName">First Name</option>	
+            		<option value="f_lastName">Last Name</option>
+            		<option value="f_email">Email</option>
+            		<option value="f_username">Username</option>
+            		<option value="f_password">Password</option>
+            	</select>
+            	
+            	<b>Message Type:</b>
+            	<select id="msgType">
+            		<option value="none">All Types</option>
+            		<option value="info">Info</option>	
+            		<option value="warning">Warning</option>
+            		<option value="success">Success</option>
+            		<option value="error">Error</option>
+            	</select>
+            	
+            	<b>Select / Type new Identifier (optional):</b>
+            	<select id="msgIDs">
+            		<option value=""></option>
+            	</select>
+            	<input id="msgID">
+            	
+            	<b>Operation:</b>
+            	<select id="opType">
+            		<option value="add">Add</option>	
+            		<option value="update">Update</option>
+            		<option value="remove">Remove</option>
+            	</select>
+            	
+            	<button type="button" onclick="doOperation()">OK</button>            	
+            </div>
+        </div>
+    </body>
+</html>
