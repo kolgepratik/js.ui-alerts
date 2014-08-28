@@ -4,12 +4,13 @@
     "description": "Use the message plugin for showing beautiful messages around form fields or other HTML elements. You can show and hide multiple messages on a single field.",
     "keywords": [        
 		"messages",
-        "validation",
+        "validations",
         "information",
         "notes",
         "tooltips",
 		"form",
-      	"fields"
+      	"fields",
+      	"errors"
     ],
     "version": "1.0.0",
 	"homepage": "http://kolgepratik.github.io/message/",
