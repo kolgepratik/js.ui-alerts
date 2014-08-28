@@ -68,14 +68,14 @@
 
 <p>Nothing special needs to be done. Using this plugin, you can add messages to your fields and HTML elements with a single line of code. Here's how to do it. </p>
 
-<p>Lets say we have the following DIV with ID 'myFirstmessage' on our page which we want to convert into a message box. </p>
+<p>Lets say we have the following field with ID 'firstName' on your page on which you want to add a message:  </p>
 
 <pre><code>&lt;div&gt;
     &lt;label&gt;First name:&lt;/label&gt;&lt;input id="firstName"&gt;
 &lt;/div&gt;
 </code></pre>
 
-<p>Now, to add a message to this field, write the following code: </p>
+<p>Now, to add a message to this field, simply write the following code: </p>
 
 <pre><code>&lt;script&gt;
     $('#firstName').message('add', { type: 'info', text: 'My first Message' });
@@ -114,6 +114,16 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39180731-5");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
