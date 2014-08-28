@@ -1,7 +1,7 @@
 (
 	function( $ ) {
 		var settings = {			
-			message: {	
+			messages: {	
 				constants: {					
 				},
 				defaults: {
@@ -13,7 +13,7 @@
 		var methods = {
 			
 			init: function(options) {
-				$.extend(settings.message.defaults, options);
+				$.extend(settings.messages.defaults, options);
 			},
 			
 			add: function(options) {
@@ -22,9 +22,9 @@
 				return this.each(function() {
 					var $this = $(this);
 					
-					var $message = helpers.message.getMessage(options);
+					var $message = helpers.messages.getMessage(options);
 					
-					helpers.message.remove($this, options);
+					helpers.messages.remove($this, options);
 					
 					if(options.where) {
 						if(options.where === 'before') {
@@ -58,7 +58,7 @@
 				return this.each(function() {
 					var $this = $(this);
 					
-					helpers.message.remove($this, options);
+					helpers.messages.remove($this, options);
 				});
 			},
 			
@@ -68,7 +68,7 @@
 				return this.each(function() {
 					var $this = $(this);
 					
-					helpers.message.findMessage($this, options).html(options.text);
+					helpers.messages.findMessage($this, options).html(options.text);
 				
 					if(options.flash) {
 						$this.effect('highlight', options.flash);
@@ -78,12 +78,12 @@
 		};
 		
 		var helpers = {
-			message: {
+			messages: {
 				getMessage: function(options) {
 					var $messageSpan = $('<span></span>');
 			
 					$messageSpan.append(options.text);			
-					$messageSpan.addClass('ms-msg ms-msg-' + options.type + ' ms-msg-' + options.id + ' ' + settings.message.defaults.messageStyle);
+					$messageSpan.addClass('ms-msg ms-msg-' + options.type + ' ms-msg-' + options.id + ' ' + settings.messages.defaults.messageStyle);
 					
 					return $messageSpan;
 				},
@@ -108,30 +108,30 @@
 					var message = null;
 					
 					if(options.id) {
-						message = helpers.message.getMessageParent(element, options).find('span.ms-msg-' + options.id);						
+						message = helpers.messages.getMessageParent(element, options).find('span.ms-msg-' + options.id);						
 					} else if (options.type) {
-						message = helpers.message.getMessageParent(element, options).find('span.ms-msg-' + options.type);						
+						message = helpers.messages.getMessageParent(element, options).find('span.ms-msg-' + options.type);						
 					} else {
-						message = helpers.message.getMessageParent(element, options).find('span.ms-msg');						
+						message = helpers.messages.getMessageParent(element, options).find('span.ms-msg');						
 					}
 					
 					return message;
 				},
 				
 				remove: function(element, options) {
-					helpers.message.findMessage(element, options).remove();
+					helpers.messages.findMessage(element, options).remove();
 				}
 			}
 		};
 		
-		$.fn.message = function( method ) {
+		$.fn.messages = function( method ) {
 			// If the method parameter is present, then call the method, else call the default method i.e. init. 
 			if( methods[method] ) {
 				return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
 			} else if ( !method || typeof method === 'object' ) {
 				return methods.init.apply(this, arguments);
 			} else {
-				$.error('Method ' + method + ' does not exist on jQuery.message');
+				$.error('Method ' + method + ' does not exist on jQuery.messages');
 			}
 		}; 
 	}

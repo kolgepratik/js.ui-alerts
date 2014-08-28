@@ -3,15 +3,15 @@
 <html>
     <head>
         <script src="javascripts/jquery-2.0.3.js"></script>
-        <script src="javascripts/message.js"></script>        
+        <script src="javascripts/messages.js"></script>        
                 
-        <link rel="stylesheet" href="stylesheets/message.css">
+        <link rel="stylesheet" href="stylesheets/messages.css">
         
         <script>
         	var allAvailableFieldIDs = [];
         
             $(document).ready(function() {
-            	$('#messagesDIV').message({ messageStyle: 'ms-msg-block' });
+            	$('#messagesDIV').messages({ messageStyle: 'ms-msg-block' });
             	
             	$('#msgIDs').on('change', function() {
             		$('#msgID').val($(this).find('option:selected').val());
@@ -54,7 +54,7 @@
 						//console.log('msgType: ' + msgType);
 						//console.log('msgText: ' + msgText);
 						//console.log('opType: ' + opType);
-						$('#' + allAvailableFieldIDs[i]).message(opType, { id: msgID, type: msgType, text: msgText });
+						$('#' + allAvailableFieldIDs[i]).messages(opType, { id: msgID, type: msgType, text: msgText });
 					}
 				} else {
 					fieldName = (fieldName ? fieldName : 'messagesDIV');
@@ -63,7 +63,7 @@
 					//console.log('msgType: ' + msgType);
 					//console.log('msgText: ' + msgText);
 					//console.log('opType: ' + opType);
-					$('#' + fieldName).message(opType, { id: msgID, type: msgType, text: msgText });
+					$('#' + fieldName).messages(opType, { id: msgID, type: msgType, text: msgText });
 				}
 			}
         </script>
