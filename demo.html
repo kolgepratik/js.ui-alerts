@@ -3,15 +3,15 @@
 <html>
     <head>
         <script src="javascripts/jquery-2.0.3.js"></script>
-        <script src="javascripts/message.js"></script>        
+        <script src="javascripts/messages.js"></script>        
                 
-        <link rel="stylesheet" href="stylesheets/message.css">
+        <link rel="stylesheet" href="stylesheets/messages.css">
         
         <script>
         	var allAvailableFieldIDs = [];
         
             $(document).ready(function() {
-            	$('#messagesDIV').message({ messageStyle: 'ms-msg-block' });
+            	$('#messagesDIV').messages({ messageStyle: 'ms-msg-block' });
             	
             	$('#msgIDs').on('change', function() {
             		$('#msgID').val($(this).find('option:selected').val());
@@ -49,11 +49,21 @@
 				
 				if (!fieldName && (opType === 'add' || opType === 'update')) {
 					for (var i=0; i<allAvailableFieldIDs.length; i++) {
-						$('#' + allAvailableFieldIDs[i]).message(opType, { id: msgID, type: msgType, text: msgText });
+						//console.log('allAvailableFieldIDs: ' + allAvailableFieldIDs[i]);
+						//console.log('msgID: ' + msgID);
+						//console.log('msgType: ' + msgType);
+						//console.log('msgText: ' + msgText);
+						//console.log('opType: ' + opType);
+						$('#' + allAvailableFieldIDs[i]).messages(opType, { id: msgID, type: msgType, text: msgText });
 					}
 				} else {
 					fieldName = (fieldName ? fieldName : 'messagesDIV');
-					$('#' + fieldName).message(opType, { id: msgID, type: msgType, text: msgText });
+					//console.log('fieldName: ' + fieldName);
+					//console.log('msgID: ' + msgID);
+					//console.log('msgType: ' + msgType);
+					//console.log('msgText: ' + msgText);
+					//console.log('opType: ' + opType);
+					$('#' + fieldName).messages(opType, { id: msgID, type: msgType, text: msgText });
 				}
 			}
         </script>
@@ -61,15 +71,14 @@
         <style>
         	#mainDIV {
         		position: fixed;
-        		top: 5%;
+        		top: 10%;
         		left: 5%;
-        		height: 90%;
+        		height: 80%;
         		width: 90%;
         		overflow: auto;      		
         		text-align: left;
         		padding: 5px;
         		border: 1px solid gray;
-        		background-color: #FFFFF5;
         	}
         	
         	#messagesDIV {
@@ -90,7 +99,6 @@
         	select {
         		width: 100px;
         		padding: 3px;
-        		margin-right: 10px;
         	}
         	
         	button {
@@ -108,13 +116,6 @@
         <div id="mainDIV">
             <h3><u>message.js</u></h3>
             
-            <p>
-	            message - A lightweight jQuery plugin for showing messages around fields and other HTML elements.<br/>
-				Use the message plugin for showing beautiful messages around form fields or other HTML elements. You can show and hide multiple messages on a single field.
-            </p>
-            
-            <br/>
-            
             <div id="messagesDIV">
                 <div><label>First name</label><input id="f_firstName" /></div>
                 <div><label>Last name</label><input id="f_lastName" /></div>
@@ -126,7 +127,8 @@
             <div>
             	<h4><u>Select operations to perform on the above fields:</u></h4>
             	
-            	<select id="fieldName" title="Select field">
+            	<b>Field:</b>
+            	<select id="fieldName">
             		<option value="all">All fields</option>
             		<option value="f_firstName">First Name</option>	
             		<option value="f_lastName">Last Name</option>
@@ -135,7 +137,8 @@
             		<option value="f_password">Password</option>
             	</select>
             	
-            	<select id="msgType" title="Select Type of Message">
+            	<b>Message Type:</b>
+            	<select id="msgType">
             		<option value="none">All Types</option>
             		<option value="info">Info</option>	
             		<option value="warning">Warning</option>
@@ -143,12 +146,14 @@
             		<option value="error">Error</option>
             	</select>
             	
-            	<select id="msgIDs" title="Select an already added Identifier">
+            	<b>Select / Type new Identifier (optional):</b>
+            	<select id="msgIDs">
             		<option value=""></option>
             	</select>
-            	<input id="msgID" placeholder="Type an Identifier" title="Type an Identifier">
+            	<input id="msgID">
             	
-            	<select id="opType" title="Select the operation to perform">
+            	<b>Operation:</b>
+            	<select id="opType">
             		<option value="add">Add</option>	
             		<option value="update">Update</option>
             		<option value="remove">Remove</option>
@@ -156,17 +161,6 @@
             	
             	<button type="button" onclick="doOperation()">OK</button>            	
             </div>
-            
-            <br/>
-            
-            <p>
-				Check out the plugin overview <a href="http://kolgepratik.github.io/message/" target="_blank">here</a> <br/>
-				To read the documentation go <a href="https://github.com/kolgepratik/message/wiki" target="_blank">here</a> <br/>
-				See the demo <a href="http://kolgepratik.github.io/message/demo.html" target="_blank">here</a> <br/>
-				Your feedback is always welcome. :)
-			</p>
-			
-			<a href="mailto:kolge.pratik@gmail.com?subject=feedback">kolgepratik</a>
         </div>
     </body>
 </html>
