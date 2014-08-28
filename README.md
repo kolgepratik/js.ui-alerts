@@ -1,4 +1,4 @@
-dialog
+message
 =======
 
-An awesome lightweight jQuery plugin for creating overlay dialogs.
+message - A lightweight jQuery plugin for showing messages around fields and other HTML elements.
